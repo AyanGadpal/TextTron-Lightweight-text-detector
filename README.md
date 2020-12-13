@@ -1,2 +1,5 @@
 # TextTron-Lightweight-text-detector
-TextTron is a simple light-weight image processing based text detector in document images. 
+TextTron is a simple light-weight image processing based text detector in document images. <br><br>
+![Demo](demo.gif)
+
+
