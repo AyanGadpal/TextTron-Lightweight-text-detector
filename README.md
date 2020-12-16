@@ -19,6 +19,7 @@ NumPy = 1.17 <br>
 ## 3. Usage
 ### 3.1 API
 <img align="left" src="media/GUI.gif" /> 
+
 i. Import the neccessary libraries and read the image
 ```
 import cv2
