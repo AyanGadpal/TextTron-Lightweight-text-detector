@@ -33,3 +33,8 @@ iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
 ``` 
+v. If you want to set parameter
+```
+TextTron.setParameters(img)
+```
+![Demo](demo.gif)
