@@ -9,7 +9,7 @@ Though this will not work well in scene text detection, only meant for document 
 
 ## 2. Setup
 ```
-pip install TextTron
+$pip install TextTron
 ```
 
 <b>Code is developed under following library dependencies</b> <br>
