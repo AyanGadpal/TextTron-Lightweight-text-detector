@@ -16,9 +16,11 @@ pip install TextTron
 OpenCV = 4.1.2 <br>
 NumPy = 1.17 <br>
 
+<img align="left" src="media/GUI.gif" /> 
+
 ## 3. Usage
 ### 3.1 API
-<img align="left" src="media/GUI.gif" /> 
+
 
 i. Import the neccessary libraries and read the image
 ```
