@@ -33,6 +33,8 @@ iii. Get the text bounding boxes
 ```
 tbbox = TT.textBBox
 ``` 
+<img align="left" src="media/GUI.gif" /> 
+
 iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
@@ -41,5 +43,4 @@ v. If you want to set/decide best parameter for your case (optional)
 ```
 TextTron.setParameters(img)
 ```
-![GUI](media/GUI.gif)
 
