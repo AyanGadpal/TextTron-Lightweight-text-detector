@@ -34,7 +34,7 @@ iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
 ``` 
-v. If you want to set parameter
+v. If you want to set/decide best parameter for your case (optional)
 ```
 TextTron.setParameters(img)
 ```
