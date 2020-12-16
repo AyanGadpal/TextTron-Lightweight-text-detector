@@ -1,5 +1,9 @@
+# Author : Ayan Gadpal
+# github : github.com/AyanGadpal
+# Last Update : 12/13/2020
+
 '''
-contours
+T
 '''
 import cv2
 import numpy as np 
@@ -7,7 +11,7 @@ import operator
 
 class TextTron:
 
-	def __init__(self,img,low=177,high=255,yThreshold = 5,xThreshold = 8):
+	def __init__(self,img,low=177,high=255,yThreshold = 5,xThreshold = 2):
 		
 		assert isinstance(img, np.ndarray), "Image is empty or not in proper format,\n Only cv2 (numpy) image are accepted \n Use TextTron.from(pathtoimg) to read image directory from storage"
 		
@@ -20,15 +24,17 @@ class TextTron:
 		
 		# Get the BBox from the contours
 		self.BBox = self.getBoundingBoxFromContour(contours)
+
+
 		# Get Rows
 		self.linesSet = self.clusterInRowsByY(yThreshold = yThreshold)
 		# Get words in each row
 		self.wordsSet =  self.clusterInWordsByX(xThreshold = xThreshold)
-
+		
 		self.plotImg, self.textBBox = self.getAndPlotTextBBox(self.img.copy(),self.wordsSet)
 
-		print(self.textBBox)
-
+	def getTextBBox(self):
+		return self.textBBox
 
 
 	def preProcess(self,img,low,high):
@@ -37,18 +43,22 @@ class TextTron:
 		if c > 1:
 			img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 		# Preprossing for the Countours 
-		res, thresh = cv2.threshold(img,low,high,0)
-		return thresh
+		_, mask = cv2.threshold(img,low,high,cv2.THRESH_BINARY_INV)
+		kernal = np.ones((2,2),np.uint8)
+		dst = cv2.dilate(mask,kernal,iterations = 2)
+		dst = cv2.bitwise_not(dst)
+		return dst
 
 	def getBoundingBoxFromContour(self,contours):
 		rects = []
 		width,height,_ = self.img.shape
 		for cnt in contours:
 			box = cv2.boundingRect(cnt)
-			if (box[2] < (width*0.7)) and (box[3] < (height*0.7)):
-			   rects.append(box)
+			if cv2.contourArea(cnt) >= 60 :
+				if (box[2] < (width*0.95)) and (box[3] < (height*0.95)):
+				   rects.append(box)
 
-		# Sort bounding rec	ts by Y and then x coordinate
+		# Sort bounding rec	ts by Y and then X coordinate
 		rects= sorted(rects , key = lambda x: (x[1], x[0]))
 		return rects
 
@@ -82,6 +92,51 @@ class TextTron:
 
 		return LinesSet
 
+
+	# Alternative Contructor
+	# Set parameter by adjusting the trackbar
+	# High value because changing it will produces many error, But you can try it if you want
+	@classmethod
+	def setParameters(cls,img):
+		
+		namedWindow = "TextTron Set Parameters"
+		cv2.namedWindow(namedWindow)
+
+		cv2.createTrackbar('low',namedWindow,0,250,lambda x:x)
+		cv2.createTrackbar('yThreshold',namedWindow,0,50,lambda x:x)
+		cv2.createTrackbar('xThreshold',namedWindow,0,50,lambda x:x)
+
+		cv2.setTrackbarPos('xThreshold',namedWindow,5)
+		cv2.setTrackbarPos('yThreshold',namedWindow,2)
+		cv2.setTrackbarPos('low',namedWindow,177)
+		
+		# Note: Uncomment this if you want to set high value for thresholding too
+		# It is commented because change it will produce some error
+		# cv2.createTrackbar('high',namedWindow,100,255,lambda x:x)
+		# cv2.setTrackbarPos('high',namedWindow,255)
+
+		tt = cls(img,low=177,high=255,yThreshold=5,xThreshold=2)
+		while True:
+			low = cv2.getTrackbarPos('low',namedWindow)
+			yThreshold = cv2.getTrackbarPos('yThreshold',namedWindow)
+			xThreshold = cv2.getTrackbarPos('xThreshold',namedWindow)
+			
+			# Umcomment to enable high, and then please comment line below it, 
+			# where the high is set manually to 255
+			# high = cv2.getTrackbarPos('high',namedWindow)
+			# tt = cls(img,low=low,high=255,yThreshold=yThreshold,xThreshold=xThreshold)
+
+			tt = cls(img,low=low,high=255,yThreshold=yThreshold,xThreshold=xThreshold)
+			plotImg = tt.plotImg
+			cv2.imshow(namedWindow,plotImg)
+
+			if cv2.waitKey(1) & 0xFF == ord('q'):
+				break
+
+		cv2.destroyAllWindows()
+		return tt 
+
+
 	def clusterInWordsByX(self,xThreshold):
 		WordsSet = []
 		
@@ -92,21 +147,21 @@ class TextTron:
 
 			# Intialise
 			old = line[0][0]+line[0][2]
-			naya = []
-			naya.append(line[0])
+			new = []
+			new.append(line[0])
 			temp = []
 
 			# Same logic as clusterInRowsByY
 			for rect in line:
-				if abs(rect[0] - old) < xThreshold:
-					naya.append(rect)
+				if (rect[0] - old) < xThreshold:
+					new.append(rect)
 				else:
-					if naya != []:
-						temp.append(naya)
-					naya = []
-					naya.append(rect)
+					if new != []:
+						temp.append(new)
+					new = []
+					new.append(rect)
 				old = rect[0]+rect[2]
-			temp.append(naya)
+			temp.append(new)
 			WordsSet.append(temp)
 		return WordsSet
 
@@ -134,39 +189,3 @@ class TextTron:
 				oimg = cv2.rectangle(oimg, (minx, miny), (maxx, maxy), (0, 0, 181), 2)
 		
 		return (oimg,TextBBox)	
-
-
-
-# # Intialial Magatmari
-img = cv2.imread("Test10.png")
-tt = TextTron(img)
-# grayimg = cv2.imread("Test10.png",0) # i know
-# width,height,_ = img.shape
-# oimg = img.copy()
-
-# # Preprossing for the Countours 
-# res, thresh = cv2.threshold(grayimg,177,255,0)
-# contours , hierarchy = cv2.findContours(thresh, cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)
-# print("Number of contours = "+str(len(contours)))
-
-
-# # rects.sort(key = getXFromRect)
-# rects = getBoundingBoxFromContour(contours)
-
-# # Sort bounding rects by Y and then x coordinate
-# rects = sorted(rects, key = lambda x: (x[1], x[0]))
-
-# LinesSet = clusterInRowsByY(rects)
-
-# WordsSet =  clusterInWordsByX(LinesSet)
-
-# oimg,_ = getAndPlotTextBBox(oimg,WordsSet)
-
-# 	img = plotWordsWithDiffColor(img,WordsSet)
-
-# cv2.imshow("WORDS",img)
-# cv2.imshow("BBOX",oimg)
-
-
-# cv2.waitKey(0)
-# cv2.destroyAllWindows()
