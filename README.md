@@ -22,7 +22,8 @@ img = cv2.imread(PATH)
 ```
 ii. Pass the numpy or cv2 image to the TextTron 
 ```
-TT = TextTron(img)
+TT = TextTron(img) 
+TT = TextTron(img, low=196,high=255,yThreshold=15,xThreshold=2) # Change this till you get good result
 ```
 iii. Get the text bounding boxes
 ```
