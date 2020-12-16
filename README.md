@@ -7,7 +7,11 @@ TextTron is a simple light-weight image processing based text detector in docume
 TextTron detect text with the help of Contours applied on a preprossed image. This meant for fast text detection without using any machine learning or deep learning model.
 Though this will not work well in scene text detection, only meant for document images <br><br>
 
-## 2. Setup
+## 2. Quick Start
+#### 1. Requirements: numpy & opencv-python
+* `pip install numpy`
+* `pip install opencv-python`
+#### 2. Install the package 
 ```
 $pip install TextTron
 ```
@@ -38,13 +42,12 @@ iii. Get the text bounding boxes
 tbbox = TT.textBBox
 ``` 
 
-
+<img align="right" src="media/GUI.gif" /> 
 iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
 ``` 
 v. If you want to set/decide best parameter for your case (optional)
-<img align="right" src="media/GUI.gif" /> 
 ```
 TextTron.setParameters(img)
 ```
