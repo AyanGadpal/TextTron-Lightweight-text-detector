@@ -5,7 +5,7 @@
 
 TextTron is a simple light-weight image processing based text detector in document images. 
 TextTron detect text with the help of Contours applied on a preprossed image. This meant for fast text detection without using any machine learning or deep learning model.
-Though this will not work well in scene text detection, only meant for document images <br><br>
+Though this will not work well in scene text detection, only meant for document images 
 
 ## 2. Quick Start
 #### 1. Requirements: numpy & opencv-python
