@@ -1,10 +1,10 @@
 # TextTron-Lightweight-text-detector
-
+<img align="right" src="media/demo.gif" />
 ## 1. Introduction
+
 TextTron is a simple light-weight image processing based text detector in document images. 
 TextTron detect text with the help of Contours applied on a preprossed image. This meant for fast text detection without using any machine learning or deep learning model.
 Though this will not work well in scene text detection, only meant for document images <br><br>
-![TextTron](media/demo.gif)
 
 ## 2. Dependencies
 
@@ -38,3 +38,4 @@ v. If you want to set parameter
 TextTron.setParameters(img)
 ```
 ![GUI](media/GUI.gif)
+
