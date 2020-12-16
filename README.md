@@ -1,5 +1,6 @@
 # TextTron-Lightweight-text-detector
-<img align="right" src="media/demo.gif" />
+<img align="right" src="media/demo.gif" /> 
+
 ## 1. Introduction
 
 TextTron is a simple light-weight image processing based text detector in document images. 
