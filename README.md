@@ -16,7 +16,7 @@ pip install TextTron
 OpenCV = 4.1.2 <br>
 NumPy = 1.17 <br>
 
-<img align="left" src="media/GUI.gif" /> 
+
 
 ## 3. Usage
 ### 3.1 API
@@ -37,6 +37,8 @@ iii. Get the text bounding boxes
 ```
 tbbox = TT.textBBox
 ``` 
+<img align="right" src="media/GUI.gif" /> 
+
 iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
