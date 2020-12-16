@@ -14,21 +14,21 @@ NumPy = 1.17 <br>
 
 ## 3. Usage
 ### 3.1 API
-#### i) Import the neccessary libraries and read the image
+i. Import the neccessary libraries and read the image
 ```
 import cv2
 import TextTron
 img = cv2.imread(PATH)
 ```
-#### ii) Pass the numpy or cv2 image to the TextTron 
+ii. Pass the numpy or cv2 image to the TextTron 
 ```
 TT = TextTron(img)
 ```
-#### iii) Get the text bounding boxes
+iii. Get the text bounding boxes
 ```
 tbbox = TT.textBBox
 ``` 
-#### iv) Get the ploted image (optional)
+iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
 ``` 
