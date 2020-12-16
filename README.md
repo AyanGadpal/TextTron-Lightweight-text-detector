@@ -43,6 +43,7 @@ tbbox = TT.textBBox
 ``` 
 
 <img align="right" src="media/GUI.gif" /> 
+
 iv. Get the ploted image (optional)
 ```
 plotImg = TT.plotImg
@@ -51,4 +52,8 @@ v. If you want to set/decide best parameter for your case (optional)
 ```
 TextTron.setParameters(img)
 ```
+## 4. Contact
+Ayan Gadpal : ayangadpal2 [at] gmail [dot] com <br>
+
+## 5. References 
 
