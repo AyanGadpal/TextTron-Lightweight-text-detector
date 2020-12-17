@@ -29,7 +29,7 @@ NumPy = 1.17 <br>
 i. Import the neccessary libraries and read the image
 ```
 import cv2
-import TextTron
+from TextTron import TextTron
 img = cv2.imread(PATH)
 ```
 ii. Pass the numpy or cv2 image to the TextTron 
