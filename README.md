@@ -56,4 +56,4 @@ TextTron.setParameters(img)
 Ayan Gadpal : ayangadpal2 [at] gmail [dot] com <br>
 
 ## 5. References 
-
+Y. Liu, S. Goto, T. Ikenaga, "A Contour-Based Robust Algorithm for Text Detection in Color Images", IEICE TRANS. INF. & SYST., VOL.E89–D, NO.3 MARCH 2006 
