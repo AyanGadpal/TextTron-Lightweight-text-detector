@@ -7,10 +7,10 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(
 name='TextTron',
-version='0.42',
+version='0.45',
 author='Ayan Gadpal',
 author_email='ayangadpal2@gmail.com',
-packages = ['TextTron'],
+packages= find_packages(),
 license = "MIT",
 description = ("TextTron is a simple light-weight image processing based text detector in document images."),
 long_description_content_type='text/markdown',
