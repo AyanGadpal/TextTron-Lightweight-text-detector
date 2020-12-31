@@ -42,7 +42,7 @@ iii. Get the text bounding boxes
 tbbox = TT.textBBox
 ``` 
 
-<img align="right" src="media/gui.gif"/> 
+<img align="right" src="https://github.com/AyanGadpal/TextTron-Lightweight-text-detector/raw/main/media/GUI.gif"/> 
 
 iv. Get the ploted image (optional)
 ```
