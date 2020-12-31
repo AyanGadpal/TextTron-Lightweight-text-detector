@@ -1,5 +1,5 @@
 # TextTron-Lightweight-text-detector
-<img align="right" src="media/demo.gif" /> 
+<img align="right" src="https://github.com/AyanGadpal/TextTron-Lightweight-text-detector/raw/main/media/demo.gif"/> 
 
 ## 1. Introduction
 
@@ -42,7 +42,7 @@ iii. Get the text bounding boxes
 tbbox = TT.textBBox
 ``` 
 
-<img align="right" src="media/GUI.gif" /> 
+<img align="right" src="https://github.com/AyanGadpal/TextTron-Lightweight-text-detector/raw/main/media/gui.gif" /> 
 
 iv. Get the ploted image (optional)
 ```
